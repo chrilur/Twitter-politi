@@ -3,8 +3,10 @@ library(ggplot2)
 library(jsonlite)
 
 setwd ('/Users/chrilur/Documents/R/twpoliti/repo/')
-## source('cleanFrame.R')
+
 source('getTwitter.R')
+source('cleanFrame.R')
+
 alle <- read.table('data/totalt.csv', sep=",", header=TRUE, stringsAsFactors=FALSE)
 alle$created <- as.POSIXct(alle$created)
 alle$id <- as.character(alle$id)
@@ -31,8 +33,7 @@ alle <- merge(alle, tw.df, all=TRUE)
 #Loopen går gjennom hver rad og sjekker om teksten finnes i en tidligere rad.
 #I så fall slettes den.
 
-##Teste med unique
-#alle <- cleanFrame(alle,3)
+alle <- cleanFrame(alle,4)
 
 #Lagre data
 write.table(alle, 'data/totalt.csv', col.names=TRUE, row.names=FALSE, sep=",", fileEncoding="UTF-8")
@@ -60,4 +61,4 @@ hordplot <- ggplot(hord, aes(x=created, y=screenName)) + geom_point()
 
 ##JSON-data
 jsonalle <- toJSON(alle)
-write.table(jsonalle, 'data/twdata.JSON', row.names=FALSE, col.names=FALSE, quote=FALSE)
+write(allejson, file = 'data/twdata.JSON', ncolumns=1, sep="")
