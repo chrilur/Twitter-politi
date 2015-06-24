@@ -1,0 +1,9 @@
+Loading required package: methods
+Warning message:
+In fun(libname, pkgname) :
+  no display name and no $DISPLAY environment variable
+[1] "Using browser based authentication"
+Error in scan(file, what, nmax, sep, dec, quote, skip, nlines, na.strings,  : 
+  line 11 did not have 3 elements
+Calls: read.table -> scan
+Execution halted
